@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">OnChat-android</string>
+    <string name="signup">SignUp</string>
+    <string name="login">Login</string>
+    <string name="id_number">תעודת זהות</string>
+    <string name="fast_simple_and_secure_messaging">Fast, Simple and Secure Messaging.</string>
+    <string name="o_n_chat">O-N Chat</string>
+    <string name="loginPage">Login</string>
+    <string name="signupPage">SignUp</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="back_to_login">back to Login</string>
+    <string name="BaseUrl">http://10.0.2.2:7242/api/</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="todo1">TODO</string>
+    <string name="textview">TextView</string>
+    <string name="settings">Settings</string>
+    <string name="EditText">מספר חדר</string>
+    <string name="Id_number_box">תעודת זהות</string>
+    <string name="EditText2">תעודת זהות</string>
+    <string name="my_hotel">My Hotel</string>
+    <string name="TextView">חופשה מהנה לכל המשפחה</string>
+    <string name="TextView2">חופשה מהנה לכל המשפחה</string>
+    <string name="username" />
+    <string name="password" />
+    <string name="backtomenu" />
+    <string name="menu" />
+    <string name="menu1">menu</string>
+    <string name="_972_352_633_32">+972 352 633 32</string>
+    <string name="info_eilat_myhotel_com">info.eilat@myhotel.com</string>
+    <string name="address_wounderland_24_eilat">Address - wounderland 24, Eilat</string>
+    <string name="menu2">menu</string>
+    <string name="menu5">MENU</string>
+    <string name="title_activity_mapy">Mapy</string>
+    <string name="title_activity_maps">Maps</string>
+
+
+</resources>
