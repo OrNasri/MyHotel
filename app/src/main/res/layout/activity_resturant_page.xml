@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,35 +7,81 @@
     android:layout_height="match_parent"
     tools:context=".RestaurantPage">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/bag"
-        android:layout_width="60dp"
-        android:layout_height="53dp"
-        android:src="@drawable/ic_baseline_shopping_cart_24"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="494dp"
+        android:layout_height="829dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/backToMenuRestaurant"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.986" />
-
-    <Button
-        android:id="@+id/backToMenuRestaurant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/menu5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.808"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvProgramRestaurant"
-        app:layout_constraintVertical_bias="0.986"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/menu" />
 
     <ListView
         android:id="@+id/lvProgramRestaurant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
-    </ListView>
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView35"
+        app:layout_constraintTop_toBottomOf="@+id/textView27"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bagShop"
+        android:layout_width="60dp"
+        android:layout_height="53dp"
+        android:src="@drawable/ic_baseline_shopping_cart_24"
+        app:backgroundTint="#5B6265"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.978" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/backToMenuRestaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        android:text="@string/menu5"
+        app:backgroundTint="#5B6265"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView7"
+        app:layout_constraintVertical_bias="0.017" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" "
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.018" />
+
+    <TextView
+        android:id="@+id/textView35"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="656dp"
+        android:text=" "
+        android:textSize="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView27"
+        app:layout_constraintVertical_bias="0.995" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,7 @@
     <string name="app_name">OnChat-android</string>
     <string name="signup">SignUp</string>
     <string name="login">Login</string>
-    <string name="id_number">תעודת זהות</string>
+    <string name="id_number">ID NUMBER</string>
     <string name="fast_simple_and_secure_messaging">Fast, Simple and Secure Messaging.</string>
     <string name="o_n_chat">O-N Chat</string>
     <string name="loginPage">Login</string>
@@ -14,9 +14,9 @@
     <string name="todo1">TODO</string>
     <string name="textview">TextView</string>
     <string name="settings">Settings</string>
-    <string name="EditText">מספר חדר</string>
-    <string name="Id_number_box">תעודת זהות</string>
-    <string name="EditText2">תעודת זהות</string>
+    <string name="EditText">ROOM NUMBER</string>
+    <string name="Id_number_box">ID NUMBER</string>
+    <string name="EditText2">ID NUMBER</string>
     <string name="my_hotel">My Hotel</string>
     <string name="TextView">חופשה מהנה לכל המשפחה</string>
     <string name="TextView2">חופשה מהנה לכל המשפחה</string>
@@ -32,6 +32,7 @@
     <string name="menu5">MENU</string>
     <string name="title_activity_mapy">Mapy</string>
     <string name="title_activity_maps">Maps</string>
+    <string name="card">+card</string>
 
 
 </resources>

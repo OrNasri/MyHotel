@@ -4,6 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -13,22 +18,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RestaurantPage extends AppCompatActivity {
+    private List<String> bag;
+    private RestaurantAdapter adapter;
+    private List<Product> lst;
+
+    public void addToShoppingList() {
+        adapter = new RestaurantAdapter(this, lst);
+
+        ListView lvProgramRestaurant = findViewById(R.id.lvProgramRestaurant);
+        lvProgramRestaurant.setAdapter(adapter);
+        lvProgramRestaurant.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent i = new Intent(RestaurantPage.this, ShoppingBag.class);
+                bag.add(lst.get(position).title_price);
+//                i.putStringArrayListExtra("bag", (ArrayList<String>) bag);
+                //  Intent chat = new Intent(ContactPage.this, chatScreen.class);
+                //chat.putExtra("contactInfo", contactsIdList.get(position));
+                // chat.putExtra("userName", current);
+                // getMessages(current, contactsIdList.get(position), chat);
+//                startActivity(i);
+            }
+        });
+
+        lvProgramRestaurant.setAdapter(adapter);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_resturant_page);
 
-        Button buttonBack = findViewById(R.id.backToMenuRestaurant);
+        FloatingActionButton buttonBack = findViewById(R.id.backToMenuRestaurant);
         buttonBack.setOnClickListener(v -> {
             Intent i = new Intent(this, MenuPage.class);
             startActivity(i);
         });
-        FloatingActionButton Card = findViewById(R.id.bag);
-        Card.setOnClickListener(v -> {
-            Intent i = new Intent(this, ShoppingBag.class);
-            startActivity(i);
-        });
+
 
 
         List<String> restaurantMenu = new ArrayList<>();
@@ -39,11 +69,14 @@ public class RestaurantPage extends AppCompatActivity {
         restaurantMenu.add("salad");
         restaurantMenu.add("Ban");
         restaurantMenu.add("Futomaki");
+        restaurantMenu.add("sandwich");
+        restaurantMenu.add("Sunset");
         restaurantMenu.add("Crispy");
         restaurantMenu.add("Pad C");
         restaurantMenu.add("Pad Thai");
+        restaurantMenu.add(" ");
 
-        ListView lvProgram = findViewById(R.id.lvProgramRestaurant);
+        ListView lvProgramRestaurant = findViewById(R.id.lvProgramRestaurant);
 
         List<String> dishes = new ArrayList<>();
         dishes.add("Redness - 8$");
@@ -58,6 +91,7 @@ public class RestaurantPage extends AppCompatActivity {
         dishes.add("Crispy roll - 12$");
         dishes.add("Pad C U Vegetables - 15$");
         dishes.add("Chicken Pad Thai - 15$");
+        dishes.add(" ");
 
         List<String> description = new ArrayList<>();
         description.add("Green soybeans with sea salt and a lemon wedge");
@@ -72,6 +106,7 @@ public class RestaurantPage extends AppCompatActivity {
         description.add("Spicy salmon/salmon tempura, avocado and sweet potato, panko and green onion");
         description.add("Rice noodles stir-fried in chili and dark Thai soy with broccoli,green onions and coriander garnish");
         description.add("Rice noodles stir-fried in chili and sweet soy with egg, cabbage and chicken");
+        description.add(" ");
 
         List<Integer> images = new ArrayList<>();
         images.add(R.drawable.a);
@@ -86,17 +121,37 @@ public class RestaurantPage extends AppCompatActivity {
         images.add(R.drawable.j);
         images.add(R.drawable.k);
         images.add(R.drawable.l);
+        images.add(0);
 
-        RestaurantAdapter adapter = new RestaurantAdapter(this, dishes,
-                description, images);
+        lst = new ArrayList<>();
+        for (int i=0; i< images.size(); i++){
+            Product p = new Product(restaurantMenu.get(i), description.get(i), dishes.get(i),
+                    images.get(i));
+            lst.add(p);
+        }
 
-        lvProgram.setAdapter(adapter);
 
-        Button addToCard = findViewById(R.id.addCard);
-        addToCard.setOnClickListener(v -> {
+       adapter = new RestaurantAdapter(this, lst);
+
+        bag = new ArrayList<>();
+
+
+        lvProgramRestaurant.setAdapter(adapter);
+
+        FloatingActionButton Card = findViewById(R.id.bagShop);
+        Card.setOnClickListener(v -> {
             Intent i = new Intent(this, ShoppingBag.class);
+            i.putStringArrayListExtra("bag", (ArrayList<String>) bag);
+
             startActivity(i);
         });
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        addToShoppingList();
+    }
+
 }

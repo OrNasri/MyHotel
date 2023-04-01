@@ -14,8 +14,9 @@
             app:srcCompat="@drawable/avatar" />
 
     <LinearLayout
+        android:id="@+id/A"
         android:layout_width="311dp"
-        android:layout_height="161dp"
+        android:layout_height="133dp"
         android:orientation="vertical">
 
         <TextView
@@ -23,7 +24,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/advent_pro_medium"
+
             android:text="title"
+            android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -32,14 +36,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
+            android:fontFamily="@font/advent_pro"
             android:text="Description"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/addCard"
-            android:layout_width="105dp"
-            android:layout_height="37dp"
-            android:text="+card" />
+        <!--        <Button-->
+        <!--            android:id="@+id/addCard"-->
+        <!--            android:layout_width="105dp"-->
+        <!--            android:layout_height="37dp"-->
+        <!--            android:text="+card" />-->
 
 
     </LinearLayout>
