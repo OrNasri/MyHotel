@@ -21,8 +21,11 @@ public class MenuPage extends AppCompatActivity {
         getSupportActionBar().hide();
         FloatingActionButton btnAddContact = findViewById(R.id.btnChat);
         btnAddContact.setOnClickListener(v -> {
-            Intent i = new Intent(this, HelpPage.class);
+            Intent i = new Intent(this, MyChat.class);
             startActivity(i);
+//שיניתי לצאט שלי
+//            Intent i = new Intent(this, HelpPage.class);
+//            startActivity(i);
         });
 
         Button buttonFacilities = findViewById(R.id.button5);

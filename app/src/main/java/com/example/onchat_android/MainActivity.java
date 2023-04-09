@@ -13,13 +13,17 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 import com.example.onchat_android.api.PostAPI;
 import com.example.onchat_android.api.WebServiceAPI;
 import com.example.onchat_android.entities.Contact;
 import com.example.onchat_android.entities.User;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
@@ -28,13 +32,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+    private Button buttonLogin;
+    private EditText editTextTextPersonName;
+    private EditText editTextTextPassword2;
+    private FirebaseAuth auth;
+
     private AppDB dbInLogin;
     private ContactDao contactDao;
     private List<Contact> contacts;
     private ArrayAdapter<User> adapter;
     private  PostAPI postAPI;
-    private EditText editTextTextPersonName;
-    private EditText editTextTextPassword2;
+
     int flag = 0;
 
     public void getContactList(Intent j, String userId){
@@ -84,21 +92,21 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        auth = FirebaseAuth.getInstance();
 
-
-        dbInLogin = Room.databaseBuilder(getApplicationContext(), AppDB.class, "contactsDB")
-                .allowMainThreadQueries()
-                .build();
-        contactDao = dbInLogin.contactDao();
-
-        postAPI= new PostAPI();
-
-//        Button buttonSettings = findViewById(R.id.buttonSettings);
-//        buttonSettings.setOnClickListener(v -> {
-//            Intent j = new Intent(MainActivity.this, SettingActivity.class);
-//            startActivity(j);
-//        });
-        postAPI.get();
+//        dbInLogin = Room.databaseBuilder(getApplicationContext(), AppDB.class, "contactsDB")
+//                .allowMainThreadQueries()
+//                .build();
+//        contactDao = dbInLogin.contactDao();
+//
+//        postAPI= new PostAPI();
+//
+////        Button buttonSettings = findViewById(R.id.buttonSettings);
+////        buttonSettings.setOnClickListener(v -> {
+////            Intent j = new Intent(MainActivity.this, SettingActivity.class);
+////            startActivity(j);
+////        });
+//        postAPI.get();
 
 //        Button buttonSignUp = findViewById(R.id.buttonSignUp);
 //        buttonSignUp.setOnClickListener(v -> {
@@ -116,43 +124,70 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 
-        Button buttonLogin = findViewById(R.id.buttonLogin);
+        buttonLogin = findViewById(R.id.buttonLogin);
         buttonLogin.setOnClickListener(v -> {
             editTextTextPersonName = findViewById(R.id.editTextTextPersonName);
             editTextTextPassword2 = findViewById(R.id.editTextTextPassword2);
-            List<User> usersList = postAPI.getUsersList();
-            //  userDao.get(editTextTextPersonName.getText().toString());
-            for(int i=0; i< usersList.size(); i++){
-                if(usersList.get(i).id.equals(editTextTextPersonName.getText().toString())){
-                    if(usersList.get(i).password.equals(editTextTextPassword2.getText().toString())){
-                        flag = 1;
-                        break;
-                    }
-                }
-            }
-            if(flag == 1) {
-                flag = 0;
-                Intent j = new Intent(this, MenuPage.class);
-                //j.putExtra("activeUser",editTextTextPersonName.getText().toString());
-               // getContactList(j, editTextTextPersonName.getText().toString());
-                startActivity(j);
 
+            String mail_txt = editTextTextPersonName.getText().toString();
+            String pass_txt = editTextTextPassword2.getText().toString();
+            if(!mail_txt.equals("") && !pass_txt.equals("")){
+                login(mail_txt, pass_txt);
             }
             else {
-                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-                alertDialog.setTitle("Alert");
-                alertDialog.setMessage("Username or Password is incorrect");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
+                Toast.makeText(MainActivity.this, "One or two fields are empty", Toast.LENGTH_SHORT).show();
             }
-            //finish();
+
+
+//            List<User> usersList = postAPI.getUsersList();
+//            //  userDao.get(editTextTextPersonName.getText().toString());
+//            for(int i=0; i< usersList.size(); i++){
+//                if(usersList.get(i).id.equals(editTextTextPersonName.getText().toString())){
+//                    if(usersList.get(i).password.equals(editTextTextPassword2.getText().toString())){
+//                        flag = 1;
+//                        break;
+//                    }
+//                }
+//            }
+//            if(flag == 1) {
+//                flag = 0;
+//                Intent j = new Intent(this, MenuPage.class);
+//                //j.putExtra("activeUser",editTextTextPersonName.getText().toString());
+//               // getContactList(j, editTextTextPersonName.getText().toString());
+//                startActivity(j);
+
+//            }
+//            else {
+//                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+//                alertDialog.setTitle("Alert");
+//                alertDialog.setMessage("Username or Password is incorrect");
+//                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+//                        new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                dialog.dismiss();
+//                            }
+//                        });
+//                alertDialog.show();
+//            }
+//            //finish();
 
         });
 
+    }
+
+    private void login(String mail, String pass) {
+        auth.signInWithEmailAndPassword(mail, pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                flag = 1;
+                Intent j = new Intent(MainActivity.this, MenuPage.class);
+                startActivity(j);
+//                finish();
+            }
+
+        });
+        if (flag == 0){
+            Toast.makeText(MainActivity.this, "Mail or Password is incorrect, password should be content by id+room number, for example 12345678+000", Toast.LENGTH_SHORT).show();
+        }
     }
 }

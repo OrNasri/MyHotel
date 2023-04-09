@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1024810421386",
+    "project_id": "onchat-android-33122",
+    "storage_bucket": "onchat-android-33122.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024810421386:android:d8720722dccadf74dcb173",
+        "android_client_info": {
+          "package_name": "com.example.onchat_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024810421386-ic2q8ruvgqkd18b2mnrls0uts02kna5n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeAF2rCRASrgA_RgO8pAd9jNvyoqDctKs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024810421386-ic2q8ruvgqkd18b2mnrls0uts02kna5n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

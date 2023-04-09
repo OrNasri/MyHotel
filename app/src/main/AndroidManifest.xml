@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.onchat_android">
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -21,7 +21,7 @@
             android:name=".ShoppingAdapter"
             android:exported="false" />
         <activity
-            android:name=".ResturantAdapter"
+            android:name=".RestaurantAdapter"
             android:exported="false" />
         <activity
             android:name=".ShoppingBag"
@@ -53,6 +53,9 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".HelpPage"
+            android:exported="false" />
+        <activity
+            android:name=".MyChat"
             android:exported="false" />
         <activity
             android:name=".RestaurantPage"
