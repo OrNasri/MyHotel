@@ -26,8 +26,8 @@ import com.example.onchat_android.entities.newMessage;
 import com.example.onchat_android.entities.newMessageTransfer;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
+//import com.google.firebase.iid.FirebaseInstanceId;
+//import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -159,14 +159,14 @@ public class chatScreen extends AppCompatActivity {
 //            startActivity(j);
 //        });
 
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(chatScreen.this,
-                new OnSuccessListener<InstanceIdResult>(){
-                    @Override
-                    public void onSuccess(InstanceIdResult instanceIdResult) {
-                        String newToken = instanceIdResult.getToken();
-                        setToken(newToken);
-                    }
-                });
+//        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(chatScreen.this,
+//                new OnSuccessListener<InstanceIdResult>(){
+//                    @Override
+//                    public void onSuccess(InstanceIdResult instanceIdResult) {
+//                        String newToken = instanceIdResult.getToken();
+//                        setToken(newToken);
+//                    }
+//                });
 
         FloatingActionButton button_gchat_send = findViewById(R.id.button_gchat_send);
         button_gchat_send.setOnClickListener(v -> {
