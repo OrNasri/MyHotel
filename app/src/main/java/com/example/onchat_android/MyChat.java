@@ -53,6 +53,7 @@ public class MyChat extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_my_chat);
         getSupportActionBar().hide();
+
         messageList = new ArrayList<>();
 
         recyclerView = findViewById(R.id.recycler_view);

@@ -63,14 +63,10 @@ public class MenuPage extends AppCompatActivity {
             startActivity(i);
         });
 
-//        Button locations = findViewById(R.id.button8);
-//        locations.setOnClickListener(v -> {
-//            Intent i = new Intent(MenuPage.this, Mapy.class);
-//            startActivity(i);
-//        });
-
-
-
-
+        Button agent = findViewById(R.id.button9);
+        agent.setOnClickListener(v -> {
+            Intent i = new Intent(MenuPage.this, MyAgent.class);
+            startActivity(i);
+        });
     }
 }

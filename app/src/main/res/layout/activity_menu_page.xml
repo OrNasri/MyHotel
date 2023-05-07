@@ -113,7 +113,7 @@
         android:layout_width="195dp"
         android:layout_height="58dp"
         android:layout_marginTop="25dp"
-        android:text="room service"
+        android:text="MY Agent"
         android:textColor="#000000"
         app:backgroundTint="#80FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

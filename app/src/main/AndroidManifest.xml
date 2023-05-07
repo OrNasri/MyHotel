@@ -58,6 +58,9 @@
             android:name=".MyChat"
             android:exported="false" />
         <activity
+            android:name=".MyAgent"
+            android:exported="false" />
+        <activity
             android:name=".RestaurantPage"
             android:exported="false" />
         <activity

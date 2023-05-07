@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "onchat-android-33122",
+  "private_key_id": "8f82a3f205e9d9510303fd7c1ccde44c3d25d6f2",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDV55uzP37uLMPg\nWmq6+uKvPexiL/URbBYUpiKLkL0X3XQZluRh30ZRHgyj/X0iNI5qc4woEV9el4Wm\nMD6kGhXe3OGjvk8zyE5vHcyh5RBvgt7zTo6cjDPPz4/kPNayFDCwvdIf/Imz4N2k\n+8+iAwVWYCNe3LlJ/4E9rF5YtuoYHrDndStFy0cQi47fnGr4ue9jU6BfsKyZSzLd\nqf6ePuSijlLF9Ac+jvaAAtDk63Hlhep2EJahZx5E4w4gR7h29DJh0v9DARU/ptuw\nSs2OzSCQX4pJDCptmP+KrNLxOj+rmXlxjueATX3s7RL/wfJbxI8C8c9LiAsyXu32\nEcQBL57hAgMBAAECggEADVgNXSNkB1bs0cNGNvuldk3wQAhSmxeBcaCTFV6OQ029\n+0Yv4WCovfD4VCchPifl7gNfDhVWXBvq+xz1nW5gqKZiH6FExtvTM8iZvkxASBqT\njr1a9W5kIY3G4dO/R3zttCrlT7hE/V8U6KDKWUajt7mX30g4+WIqdXbaLGHdzOsI\n/4sSOBslHzhYRK2vn5KkHtXf1H530IsQefBnUWg5QIM5T1reeOoh+ZqDgUTeXAn6\njuglAn0sBIqJVXn07bO5R4DuNd6t57e9BcaHm53/EXbULRwSVe9NXD8EuSnrjyz0\nDgcWGZaG9/F/C52CTpWuh1dbxrpAxm8TCrlKT18jSQKBgQD0xfkD4FudiEo2TTPu\nqekV7EEpPywu/PvMz0dkHJiav5AxafBB+If0qOYV8bb4FTTgisJSY3zXY+mrhdnC\nbrrPxVeHW7UqOpSwdEhsqFeVuaNJQDJvlHat5AbLOCYjivWB5Vt9v58WEbcZUm1m\nkYlwL09PqMnYA2f7S6omwpsCiQKBgQDftzBjFwx6ng5Eam4qL4m2eMVbu5Gc7Q3Q\nfQ1DuVInPrQ4+gIzSesuWIqXkdIW3qR0Hb8PVJAp07gzictiEywqnCf0rfRa5Agg\nmritpK6HB40qWQX4zo8Sweb1J1BZRD67nfGcWgFwhc/XLxuF2+e5RN5EPQ9FxtW7\nOTZbOoeDmQKBgAioT+xxLQxfW7Cb/nA8lj/uQUfCMj/fNtDBrBbAZC1lBSaaRqMu\ntTBUIP85s20G4v3mKoVbe3jq0cL9UvxrijP7GONyvO+nbsbm9gDR23cyP7JBkQcd\nSy1PWWYqsD6llZVolVnXQzs2mTFOFwx/rUrIgZehsrHvPOhIftYsH+txAoGBANol\n5dcaSJ7gtQTdy6LzTBRU3A5BbxJYzhm5d0/MzGFccZ0FnVOqBtzglfSKyxRl8nMP\n9pjaWuGOhJYtDdgK3gyGzSd44UgoCAzTErawWUdug6cBvCMMONOPpMj1lxIUzB9j\nOpC9651vvmYUl4AGGYW9tAdSiyv9Ybj5Zxm6jx4xAoGBALrGI+fVLoi3XnyoJLvp\ndL+cN0GOfMSXhUbKn7f6XI+KoR/nn8LEZZpSki5f1zSvsAthx9zkYLxEfAJ6H8q4\nUPhxT0znxmHArbZ9pEyofeoMs8xQevddLl702IWFqDvvX45XO58peY+wM2zlVO4F\n0Ww+s7KifRkwyFAVC1hxYCaL\n-----END PRIVATE KEY-----\n",
+  "client_email": "ornasri@onchat-android-33122.iam.gserviceaccount.com",
+  "client_id": "104746502511648517448",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ornasri%40onchat-android-33122.iam.gserviceaccount.com"
+}

@@ -182,6 +182,11 @@ public class MainActivity extends AppCompatActivity {
                 flag = 1;
                 Intent j = new Intent(MainActivity.this, MenuPage.class);
                 startActivity(j);
+//                try {
+//                    wait(100);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
 //                finish();
             }
 
