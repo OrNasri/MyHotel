@@ -109,7 +109,7 @@ public class MyChat extends AppCompatActivity {
         RequestBody body = RequestBody.create(jsonBody.toString(),JSON);
         Request request = new Request.Builder()
                 .url("https://api.openai.com/v1/completions")
-                .header("Authorization", "Bearer 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")
+                .header("Authorization", "Bearer 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")
                 .post(body)
                 .build();
 
@@ -117,14 +117,22 @@ public class MyChat extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 addResponse("Failed to load response due to "+e.getMessage());
+                System.out.println("Failed to load response due to "+e.getMessage());
             }
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                String responseBodyString = "";
+                try {
+                    responseBodyString = response.body().string();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 if(response.isSuccessful()){
                     JSONObject jsonObject = null;
                     try {
-                        jsonObject = new JSONObject(response.body().string());
+//                        jsonObject = new JSONObject(response.body().string());
+                        jsonObject = new JSONObject(responseBodyString);
                         JSONArray jsonArray = jsonObject.getJSONArray("choices");
                         String result = jsonArray.getJSONObject(0).getString("text");
                         addResponse(result.trim());
@@ -132,7 +140,9 @@ public class MyChat extends AppCompatActivity {
                         throw new RuntimeException(e);
                     }
                 }else {
-                    addResponse("Failed to load response due to "+response.body().string());
+
+                    addResponse("Failed to load response due to " + responseBodyString);
+                    System.out.println("Failed to load response due to "+responseBodyString);
                 }
 
             }

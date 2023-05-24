@@ -135,7 +135,8 @@ public class MainActivity extends AppCompatActivity {
                 login(mail_txt, pass_txt);
             }
             else {
-                Toast.makeText(MainActivity.this, "One or two fields are empty", Toast.LENGTH_SHORT).show();
+                Toast toast = Toast.makeText(MainActivity.this, "One or two fields are empty", Toast.LENGTH_SHORT);
+                toast.show();
             }
 
 
