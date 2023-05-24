@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.onchat_android.api.PostAPI;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.api.gax.rpc.ApiException;
 import com.google.auth.oauth2.GoogleCredentials;
@@ -53,7 +54,7 @@ import java.util.Map;
 
 
 public class HotelFacilitiesPage extends AppCompatActivity {
-
+    private List<String> bag;
 //        public class DownloadFilesTask extends AsyncTask {
 //            public Map<String, QueryResult> detectIntentTexts(
 //                    HotelFacilitiesPage hfp, String projectId, List<String> texts, String sessionId, String languageCode)
@@ -124,6 +125,10 @@ public class HotelFacilitiesPage extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_hotel_facilities_page);
+        bag = getIntent().getStringArrayListExtra("bagFromShopBag");
+        if (bag == null){
+            bag = new ArrayList<>();
+        }
 
 
 ////          call to doInBackground
@@ -131,9 +136,10 @@ public class HotelFacilitiesPage extends AppCompatActivity {
 
 
 
-        Button buttonBack = findViewById(R.id.backToMenuFacilities);
+        FloatingActionButton buttonBack = findViewById(R.id.backToMenuFacilities);
         buttonBack.setOnClickListener(v -> {
             Intent i = new Intent(this, MenuPage.class);
+            i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
             startActivity(i);
         });
 

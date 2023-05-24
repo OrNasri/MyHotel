@@ -38,6 +38,9 @@
     <string name="welcome_to_easy_chatgpt_ntry_it_out_now">Welcome to Easy ChatGPT\nTry it out now</string>
     <string name="write_here">Write Here</string>
     <string name="i_m_your_virtual_assistant_ask_me_anything_you_want">I\'m your virtual assistant ask me anything you want</string>
+    <string name="backToMenuDining">backToMenuDining</string>
+    <string name="backToMenuContact">backToMenuContact</string>
+    <string name="backToMenuEmergency">backToMenuEmergency</string>
 
 
 </resources>

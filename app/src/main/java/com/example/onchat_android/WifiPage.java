@@ -8,8 +8,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-public class WifiPage extends AppCompatActivity {
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
+public class WifiPage extends AppCompatActivity {
+    private List<String> bag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,11 +22,16 @@ public class WifiPage extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_wifi_page);
+        bag = getIntent().getStringArrayListExtra("bagFromShopBag");
+        if (bag == null){
+            bag = new ArrayList<>();
+        }
 
 
-        Button buttonBack = findViewById(R.id.backToMenu);
+        FloatingActionButton buttonBack = findViewById(R.id.backToMenu);
         buttonBack.setOnClickListener(v -> {
             Intent i = new Intent(this, MenuPage.class);
+            i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
             startActivity(i);
         });
     }

@@ -9,11 +9,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DiningRoomPage extends AppCompatActivity {
-
+    private List<String> bag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,11 +23,16 @@ public class DiningRoomPage extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_dining_room_page);
+        bag = getIntent().getStringArrayListExtra("bagFromShopBag");
+        if (bag == null){
+            bag = new ArrayList<>();
+        }
 
 
-        Button buttonBack = findViewById(R.id.backToMenuDining);
+        FloatingActionButton buttonBack = findViewById(R.id.backToMenuDining);
         buttonBack.setOnClickListener(v -> {
             Intent i = new Intent(this, MenuPage.class);
+            i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
             startActivity(i);
         });
 

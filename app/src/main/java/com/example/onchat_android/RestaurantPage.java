@@ -52,10 +52,17 @@ public class RestaurantPage extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_resturant_page);
+        bag = getIntent().getStringArrayListExtra("bagFromShopBag");
+        if (bag == null){
+            bag = new ArrayList<>();
+        }
+
+
 
         FloatingActionButton buttonBack = findViewById(R.id.backToMenuRestaurant);
         buttonBack.setOnClickListener(v -> {
             Intent i = new Intent(this, MenuPage.class);
+            i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
             startActivity(i);
         });
 
@@ -133,7 +140,6 @@ public class RestaurantPage extends AppCompatActivity {
 
        adapter = new RestaurantAdapter(this, lst);
 
-        bag = new ArrayList<>();
 
 
         lvProgramRestaurant.setAdapter(adapter);

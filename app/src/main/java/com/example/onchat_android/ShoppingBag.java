@@ -86,9 +86,17 @@ public class ShoppingBag extends AppCompatActivity {
 
         setContentView(R.layout.activity_shopping_bag);
 
-        FloatingActionButton btnMenu = findViewById(R.id.menu);
-        btnMenu.setOnClickListener(v -> {
+        FloatingActionButton btnResMenu = findViewById(R.id.menu);
+        btnResMenu.setOnClickListener(v -> {
             Intent i = new Intent(this, RestaurantPage.class);
+            i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bagList);
+            startActivity(i);
+        });
+
+        FloatingActionButton buttonBack = findViewById(R.id.backToMenuShopBag);
+        buttonBack.setOnClickListener(v -> {
+            Intent i = new Intent(this, MenuPage.class);
+            i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bagList);
             startActivity(i);
         });
 

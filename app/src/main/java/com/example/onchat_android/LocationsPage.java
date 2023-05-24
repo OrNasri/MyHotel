@@ -8,8 +8,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-public class LocationsPage extends AppCompatActivity {
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
+public class LocationsPage extends AppCompatActivity {
+    private List<String> bag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,10 +22,15 @@ public class LocationsPage extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_locations_page);
+        bag = getIntent().getStringArrayListExtra("bagFromShopBag");
+        if (bag == null){
+            bag = new ArrayList<>();
+        }
 
-        Button buttonBack = findViewById(R.id.backToMenuLocations);
+        FloatingActionButton buttonBack = findViewById(R.id.backToMenuLocations);
         buttonBack.setOnClickListener(v -> {
             Intent i = new Intent(this, MenuPage.class);
+            i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
             startActivity(i);
         });
     }
