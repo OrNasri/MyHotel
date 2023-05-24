@@ -20,11 +20,13 @@ import com.example.onchat_android.api.PostAPI;
 import com.example.onchat_android.api.WebServiceAPI;
 import com.example.onchat_android.entities.Contact;
 import com.example.onchat_android.entities.User;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -94,36 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-//        dbInLogin = Room.databaseBuilder(getApplicationContext(), AppDB.class, "contactsDB")
-//                .allowMainThreadQueries()
-//                .build();
-//        contactDao = dbInLogin.contactDao();
-//
-//        postAPI= new PostAPI();
-//
-////        Button buttonSettings = findViewById(R.id.buttonSettings);
-////        buttonSettings.setOnClickListener(v -> {
-////            Intent j = new Intent(MainActivity.this, SettingActivity.class);
-////            startActivity(j);
-////        });
-//        postAPI.get();
-
-//        Button buttonSignUp = findViewById(R.id.buttonSignUp);
-//        buttonSignUp.setOnClickListener(v -> {
-//            Intent i = new Intent(this, SignUpPage.class);
-//            startActivity(i);
-//        });
-//
-//        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this,
-//                new OnSuccessListener<InstanceIdResult>(){
-//            @Override
-//            public void onSuccess(InstanceIdResult instanceIdResult) {
-//                String newToken = instanceIdResult.getToken();
-//                setToken(newToken);
-//            }
-//        });
-
-
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonLogin.setOnClickListener(v -> {
             editTextTextPersonName = findViewById(R.id.editTextTextPersonName);
@@ -138,40 +110,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(MainActivity.this, "One or two fields are empty", Toast.LENGTH_SHORT);
                 toast.show();
             }
-
-
-//            List<User> usersList = postAPI.getUsersList();
-//            //  userDao.get(editTextTextPersonName.getText().toString());
-//            for(int i=0; i< usersList.size(); i++){
-//                if(usersList.get(i).id.equals(editTextTextPersonName.getText().toString())){
-//                    if(usersList.get(i).password.equals(editTextTextPassword2.getText().toString())){
-//                        flag = 1;
-//                        break;
-//                    }
-//                }
-//            }
-//            if(flag == 1) {
-//                flag = 0;
-//                Intent j = new Intent(this, MenuPage.class);
-//                //j.putExtra("activeUser",editTextTextPersonName.getText().toString());
-//               // getContactList(j, editTextTextPersonName.getText().toString());
-//                startActivity(j);
-
-//            }
-//            else {
-//                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-//                alertDialog.setTitle("Alert");
-//                alertDialog.setMessage("Username or Password is incorrect");
-//                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-//                        new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                dialog.dismiss();
-//                            }
-//                        });
-//                alertDialog.show();
-//            }
-//            //finish();
-
         });
 
     }
@@ -180,20 +118,19 @@ public class MainActivity extends AppCompatActivity {
         auth.signInWithEmailAndPassword(mail, pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                flag = 1;
                 Intent j = new Intent(MainActivity.this, MenuPage.class);
                 startActivity(j);
-//                try {
-//                    wait(100);
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
-//                finish();
             }
 
-        });
-        if (flag == 0){
-            Toast.makeText(MainActivity.this, "Mail or Password is incorrect, password should be content by id+room number, for example 12345678+000", Toast.LENGTH_SHORT).show();
-        }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                    Toast toast = Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT);
+                    toast.show();
+                    System.out.println(e.getMessage());
+                }
+            });
+
     }
 }
