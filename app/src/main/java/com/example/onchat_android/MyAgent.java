@@ -128,7 +128,6 @@ public class MyAgent extends AppCompatActivity {
                         String[] temp2 = temp1[1].split("\"");
                         setAnswer(null);
                         if(Objects.equals(temp2[1], "None")){
-//                            setAnswer(null);
 //                            call to chatGPT
                             gpt = true;
                         }
@@ -137,7 +136,6 @@ public class MyAgent extends AppCompatActivity {
                             queryResults.put(t, queryResult);
                         }
                     }
-//                    queryResults.put(text, queryResult);
                 }
             texts.clear();
             return queryResults;
