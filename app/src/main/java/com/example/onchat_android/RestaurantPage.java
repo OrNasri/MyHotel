@@ -1,5 +1,6 @@
 package com.example.onchat_android;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,6 +14,13 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,29 +29,6 @@ public class RestaurantPage extends AppCompatActivity {
     private List<String> bag;
     private RestaurantAdapter adapter;
     private List<Product> lst;
-
-    public void addToShoppingList() {
-        adapter = new RestaurantAdapter(this, lst);
-
-        ListView lvProgramRestaurant = findViewById(R.id.lvProgramRestaurant);
-        lvProgramRestaurant.setAdapter(adapter);
-        lvProgramRestaurant.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent i = new Intent(RestaurantPage.this, ShoppingBag.class);
-                bag.add(lst.get(position).title_price);
-//                i.putStringArrayListExtra("bag", (ArrayList<String>) bag);
-                //  Intent chat = new Intent(ContactPage.this, chatScreen.class);
-                //chat.putExtra("contactInfo", contactsIdList.get(position));
-                // chat.putExtra("userName", current);
-                // getMessages(current, contactsIdList.get(position), chat);
-//                startActivity(i);
-            }
-        });
-
-        lvProgramRestaurant.setAdapter(adapter);
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +42,12 @@ public class RestaurantPage extends AppCompatActivity {
             bag = new ArrayList<>();
         }
 
-
+        FloatingActionButton Card = findViewById(R.id.bagShop);
+        Card.setOnClickListener(v -> {
+            Intent i = new Intent(this, ShoppingBag.class);
+            i.putStringArrayListExtra("bag", (ArrayList<String>) bag);
+            startActivity(i);
+        });
 
         FloatingActionButton buttonBack = findViewById(R.id.backToMenuRestaurant);
         buttonBack.setOnClickListener(v -> {
@@ -65,55 +55,6 @@ public class RestaurantPage extends AppCompatActivity {
             i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
             startActivity(i);
         });
-
-
-
-        List<String> restaurantMenu = new ArrayList<>();
-        restaurantMenu.add("Redness");
-        restaurantMenu.add("springRoll");
-        restaurantMenu.add("Chicken");
-        restaurantMenu.add("pickles");
-        restaurantMenu.add("salad");
-        restaurantMenu.add("Ban");
-        restaurantMenu.add("Futomaki");
-        restaurantMenu.add("sandwich");
-        restaurantMenu.add("Sunset");
-        restaurantMenu.add("Crispy");
-        restaurantMenu.add("Pad C");
-        restaurantMenu.add("Pad Thai");
-        restaurantMenu.add(" ");
-
-        ListView lvProgramRestaurant = findViewById(R.id.lvProgramRestaurant);
-
-        List<String> dishes = new ArrayList<>();
-        dishes.add("Redness - 8$");
-        dishes.add("Vegetable spring roll - 10$");
-        dishes.add("Chicken gyoza - 10$");
-        dishes.add("Japanese pickles - 6$");
-        dishes.add("Chicken salad - 7$");
-        dishes.add("Ban Schnitzel - 12$");
-        dishes.add("Futomaki I/O - 12$");
-        dishes.add("Vegetable sandwich - 10$");
-        dishes.add("Sunset - 12$");
-        dishes.add("Crispy roll - 12$");
-        dishes.add("Pad C U Vegetables - 15$");
-        dishes.add("Chicken Pad Thai - 15$");
-        dishes.add(" ");
-
-        List<String> description = new ArrayList<>();
-        description.add("Green soybeans with sea salt and a lemon wedge");
-        description.add("2 units filled with cabbage, sprouts, bean noodles and green onion");
-        description.add("Five pouches filled with chicken and vegetables. Served with soy sauce and ginger on the side");
-        description.add("Cabbage, carrot, cucumber, peppers and radish, garnished with toasted sesame");
-        description.add("Chicken and cucumber salad in peanut butter and coconut milk sauce");
-        description.add("Schnitzel in a bun, barbecue sauce, spicy mayonnaise, pickle and iceberg lettuce");
-        description.add("A thick roll rolled with celery inside and rice outside, coated with tempura chips");
-        description.add("4 I/O triangles coated with Tempura chips. Choice of three vegetables");
-        description.add("Salmon in tempura, avocado, cucumber and chives topped with sweet potato");
-        description.add("Spicy salmon/salmon tempura, avocado and sweet potato, panko and green onion");
-        description.add("Rice noodles stir-fried in chili and dark Thai soy with broccoli,green onions and coriander garnish");
-        description.add("Rice noodles stir-fried in chili and sweet soy with egg, cabbage and chicken");
-        description.add(" ");
 
         List<Integer> images = new ArrayList<>();
         images.add(R.drawable.a);
@@ -130,34 +71,85 @@ public class RestaurantPage extends AppCompatActivity {
         images.add(R.drawable.l);
         images.add(0);
 
-        lst = new ArrayList<>();
-        for (int i=0; i< images.size(); i++){
-            Product p = new Product(restaurantMenu.get(i), description.get(i), dishes.get(i),
-                    images.get(i));
-            lst.add(p);
-        }
 
+        fetchDataFromFirebase(new FirebaseDataCallback() {
+            @Override
+            public void onDataReceived(List<String> data) {
+                List<String> dbInfo = new ArrayList<>();
+                List<String> restaurantMenu = new ArrayList<>();
+                List<String> dishes = new ArrayList<>();
+                List<String> description = new ArrayList<>();
 
-       adapter = new RestaurantAdapter(this, lst);
+                // Handle the retrieved data here
+                for (String value : data) {
+                    dbInfo.add(value);
+                }
+//                separate data from db
+                restaurantMenu.clear();
+                dishes.clear();
+                description.clear();
+                for (String input : dbInfo) {
+                    String[] parts = input.split("#",5);
+                    restaurantMenu.add(parts[0]);
+                    dishes.add(parts[1]);
+                    description.add(parts[2]);
+                }
+                restaurantMenu.add(" ");
+                dishes.add(" ");
+                description.add(" ");
+                ListView lvProgramRestaurant = findViewById(R.id.lvProgramRestaurant);
+                lst = new ArrayList<>();
+                for (int i=0; i< images.size(); i++){
+                    Product p = new Product(restaurantMenu.get(i), description.get(i), dishes.get(i),
+                            images.get(i));
+                    lst.add(p);
+                }
+                adapter = new RestaurantAdapter(RestaurantPage.this, lst);
+                lvProgramRestaurant.setAdapter(adapter);
 
-
-
-        lvProgramRestaurant.setAdapter(adapter);
-
-        FloatingActionButton Card = findViewById(R.id.bagShop);
-        Card.setOnClickListener(v -> {
-            Intent i = new Intent(this, ShoppingBag.class);
-            i.putStringArrayListExtra("bag", (ArrayList<String>) bag);
-
-            startActivity(i);
+                // Set up the item click listener for the ListView
+                addToShoppingList();
+            }
         });
-
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        addToShoppingList();
+    public void addToShoppingList() {
+        ListView lvProgramRestaurant = findViewById(R.id.lvProgramRestaurant);
+        lvProgramRestaurant.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent i = new Intent(RestaurantPage.this, ShoppingBag.class);
+                bag.add(lst.get(position).title_price);
+            }
+        });
+        lvProgramRestaurant.setAdapter(adapter);
     }
+
+    public interface FirebaseDataCallback {
+        void onDataReceived(List<String> data);
+    }
+
+    public void fetchDataFromFirebase(FirebaseDataCallback callback) {
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("description/0");
+        databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<String> dataList = new ArrayList<>();
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        String value = snapshot.getValue(String.class);
+                        dataList.add(value);
+                    }
+                }
+                callback.onDataReceived(dataList);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle errors
+            }
+        });
+    }
+
 
 }
