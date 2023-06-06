@@ -16,6 +16,8 @@ import java.util.List;
 
 public class MenuPage extends AppCompatActivity {
     private List<String> bag;
+    private List<String> messagesInString;
+    private List<String> whoSend;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,11 +30,15 @@ public class MenuPage extends AppCompatActivity {
             bag = new ArrayList<>();
         }
 
+        messagesInString = getIntent().getStringArrayListExtra("messages");
+        whoSend = getIntent().getStringArrayListExtra("sender");
 
         Button buttonFacilities = findViewById(R.id.button5);
         buttonFacilities.setOnClickListener(v -> {
             Intent k = new Intent(MenuPage.this, HotelFacilitiesPage.class);
             k.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
+            k.putStringArrayListExtra("messages", (ArrayList<String>) messagesInString);
+            k.putStringArrayListExtra("sender", (ArrayList<String>) whoSend);
             startActivity(k);
         });
 
@@ -40,12 +46,16 @@ public class MenuPage extends AppCompatActivity {
         buttonContactInfo.setOnClickListener(v -> {
             Intent j = new Intent(MenuPage.this, ContactInfoPage.class);
             j.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
+            j.putStringArrayListExtra("messages", (ArrayList<String>) messagesInString);
+            j.putStringArrayListExtra("sender", (ArrayList<String>) whoSend);
             startActivity(j);
         });
         Button buttonWifi = findViewById(R.id.button3);
         buttonWifi.setOnClickListener(v -> {
             Intent i = new Intent(MenuPage.this, WifiPage.class);
             i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
+            i.putStringArrayListExtra("messages", (ArrayList<String>) messagesInString);
+            i.putStringArrayListExtra("sender", (ArrayList<String>) whoSend);
             startActivity(i);
         });
 
@@ -53,6 +63,8 @@ public class MenuPage extends AppCompatActivity {
         diningRoom.setOnClickListener(v -> {
             Intent i = new Intent(MenuPage.this, DiningRoomPage.class);
             i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
+            i.putStringArrayListExtra("messages", (ArrayList<String>) messagesInString);
+            i.putStringArrayListExtra("sender", (ArrayList<String>) whoSend);
             startActivity(i);
         });
 
@@ -60,6 +72,8 @@ public class MenuPage extends AppCompatActivity {
         restaurant.setOnClickListener(v -> {
             Intent i = new Intent(MenuPage.this, RestaurantPage.class);
             i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
+            i.putStringArrayListExtra("messages", (ArrayList<String>) messagesInString);
+            i.putStringArrayListExtra("sender", (ArrayList<String>) whoSend);
             startActivity(i);
         });
 
@@ -67,6 +81,8 @@ public class MenuPage extends AppCompatActivity {
         Locations.setOnClickListener(v -> {
             Intent i = new Intent(MenuPage.this, LocationsPage.class);
             i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
+            i.putStringArrayListExtra("messages", (ArrayList<String>) messagesInString);
+            i.putStringArrayListExtra("sender", (ArrayList<String>) whoSend);
             startActivity(i);
         });
 
@@ -74,6 +90,8 @@ public class MenuPage extends AppCompatActivity {
         agent.setOnClickListener(v -> {
             Intent i = new Intent(MenuPage.this, MyAgent.class);
             i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
+            i.putStringArrayListExtra("messages", (ArrayList<String>) messagesInString);
+            i.putStringArrayListExtra("sender", (ArrayList<String>) whoSend);
             startActivity(i);
         });
 
@@ -81,6 +99,8 @@ public class MenuPage extends AppCompatActivity {
         emergency.setOnClickListener(v -> {
             Intent i = new Intent(MenuPage.this, Emergency.class);
             i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
+            i.putStringArrayListExtra("messages", (ArrayList<String>) messagesInString);
+            i.putStringArrayListExtra("sender", (ArrayList<String>) whoSend);
             startActivity(i);
         });
     }

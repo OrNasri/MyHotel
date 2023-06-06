@@ -15,6 +15,8 @@ import java.util.List;
 
 public class LocationsPage extends AppCompatActivity {
     private List<String> bag;
+    List<String> whoSend;
+    List<String> mesInStrings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,11 +28,15 @@ public class LocationsPage extends AppCompatActivity {
         if (bag == null){
             bag = new ArrayList<>();
         }
+        mesInStrings = getIntent().getStringArrayListExtra("messages");
+        whoSend = getIntent().getStringArrayListExtra("sender");
 
         FloatingActionButton buttonBack = findViewById(R.id.backToMenuLocations);
         buttonBack.setOnClickListener(v -> {
             Intent i = new Intent(this, MenuPage.class);
             i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
+            i.putStringArrayListExtra("messages", (ArrayList<String>) mesInStrings);
+            i.putStringArrayListExtra("sender", (ArrayList<String>) whoSend);
             startActivity(i);
         });
     }

@@ -19,10 +19,13 @@ import com.example.onchat_android.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShoppingBag extends AppCompatActivity {
     ShoppingAdapter shoppingAdapter;
     ArrayList<String> bagList;
+    List<String> whoSend;
+    List<String> mesInStrings;
     int flag = 0;
     int sum = 0;
     public void deleteFromShoppingList() {
@@ -70,6 +73,8 @@ public class ShoppingBag extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         bagList = getIntent().getStringArrayListExtra("bag");
+        mesInStrings = getIntent().getStringArrayListExtra("messages");
+        whoSend = getIntent().getStringArrayListExtra("sender");
         setContentView(R.layout.activity_shopping_bag);
         FloatingActionButton btnResMenu = findViewById(R.id.menu);
         btnResMenu.setOnClickListener(v -> {
@@ -82,6 +87,8 @@ public class ShoppingBag extends AppCompatActivity {
         buttonBack.setOnClickListener(v -> {
             Intent i = new Intent(this, MenuPage.class);
             i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bagList);
+            i.putStringArrayListExtra("messages", (ArrayList<String>) mesInStrings);
+            i.putStringArrayListExtra("sender", (ArrayList<String>) whoSend);
             startActivity(i);
         });
 

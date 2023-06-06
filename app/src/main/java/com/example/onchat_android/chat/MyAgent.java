@@ -56,6 +56,9 @@ public class MyAgent extends AppCompatActivity {
     List<Message> messageList;
     MessageAdapter messageAdapter;
     private List<String> bag;
+    List<Message> keepMessages;
+    List<String> whoSend;
+    List<String> mesInStrings;
     String GptAnswer;
     Boolean gpt = false;
     private SessionsClient sessionsClient = null;
@@ -69,7 +72,6 @@ public class MyAgent extends AppCompatActivity {
             GoogleCredentials credentials = GoogleCredentials.fromStream(this.getResources().openRawResource(R.raw.service_account));
             SessionsSettings.Builder settingsBuilder = SessionsSettings.newBuilder();
             SessionsSettings sessionsSettings = settingsBuilder.setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build();
-
             // Instantiates a client
             sessionsClient = SessionsClient.create(sessionsSettings);
         }
@@ -156,7 +158,6 @@ public class MyAgent extends AppCompatActivity {
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
-
             return null;
         }
     }
@@ -208,7 +209,6 @@ public class MyAgent extends AppCompatActivity {
                         addResponse("Failed to load response due to " + responseBodyString);
                         System.out.println("Failed to load response due to " + responseBodyString);
                     }
-
                 }
             }
         });
@@ -219,6 +219,26 @@ public class MyAgent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        mesInStrings = getIntent().getStringArrayListExtra("messages");
+        whoSend = getIntent().getStringArrayListExtra("sender");
+        messageList = new ArrayList<>();
+        if (keepMessages == null){
+            keepMessages = new ArrayList<>();
+        }
+        if (mesInStrings == null){
+            mesInStrings = new ArrayList<>();
+        }
+        if (whoSend == null){
+            whoSend = new ArrayList<>();
+        }
+        for (int i = 0; i < mesInStrings.size(); i++){
+            Message m = new Message(mesInStrings.get(i), whoSend.get(i));
+            keepMessages.add(m);
+        }
+        if (keepMessages.size() != 0) {
+            messageList.addAll(keepMessages);
+        }
+
         setContentView(R.layout.activity_my_agent);
         getSupportActionBar().hide();
         bag = getIntent().getStringArrayListExtra("bagFromShopBag");
@@ -226,15 +246,22 @@ public class MyAgent extends AppCompatActivity {
             bag = new ArrayList<>();
         }
 
-
         FloatingActionButton buttonBack = findViewById(R.id.backToMenuAgent);
         buttonBack.setOnClickListener(v -> {
             Intent i = new Intent(this, MenuPage.class);
             i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
+            if(messageList.size() != 0) {
+                mesInStrings.clear();
+                whoSend.clear();
+                for (int j = 0; j< messageList.size(); j++){
+                    mesInStrings.add(messageList.get(j).message);
+                    whoSend.add(messageList.get(j).sentBy);
+                }
+                i.putStringArrayListExtra("messages", (ArrayList<String>) mesInStrings);
+                i.putStringArrayListExtra("sender", (ArrayList<String>) whoSend);
+            }
             startActivity(i);
         });
-
-        messageList = new ArrayList<>();
 
         recyclerView = findViewById(R.id.recycler_view);
         welcomeTextView = findViewById(R.id.welcome_text);
@@ -272,6 +299,7 @@ public class MyAgent extends AppCompatActivity {
             @Override
             public void run() {
                 messageList.add(new Message(message, sentBy));
+                keepMessages.add(new Message(message, sentBy));
                 messageAdapter.notifyDataSetChanged();
                 recyclerView.smoothScrollToPosition(messageAdapter.getItemCount());
             }
@@ -281,10 +309,12 @@ public class MyAgent extends AppCompatActivity {
     void addResponse(String response){
         messageList.remove(messageList.size()-1);
         addToChat(response, Message.SENT_BY_BOT);
+
     }
 
     String callAgent(String question) throws InterruptedException, ExecutionException {
         messageList.add(new Message("Typing...", Message.SENT_BY_BOT));
+  //      keepMessages.add(new Message("Typing...", Message.SENT_BY_BOT));
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("model", "text-davinci-003");
@@ -294,7 +324,6 @@ public class MyAgent extends AppCompatActivity {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
-
         try
         {
             InitCred();
@@ -303,7 +332,6 @@ public class MyAgent extends AppCompatActivity {
         {
             throw new RuntimeException(e);
         }
-
         DownloadFilesTask dft = new DownloadFilesTask(sessionsClient);
 
         // Call to doInBackground

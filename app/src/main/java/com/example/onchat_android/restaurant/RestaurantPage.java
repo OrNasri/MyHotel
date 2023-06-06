@@ -27,6 +27,9 @@ public class RestaurantPage extends AppCompatActivity {
     private RestaurantAdapter adapter;
     private List<Product> lst;
 
+    List<String> whoSend;
+    List<String> mesInStrings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +41,15 @@ public class RestaurantPage extends AppCompatActivity {
         if (bag == null){
             bag = new ArrayList<>();
         }
+        mesInStrings = getIntent().getStringArrayListExtra("messages");
+        whoSend = getIntent().getStringArrayListExtra("sender");
 
         FloatingActionButton Card = findViewById(R.id.bagShop);
         Card.setOnClickListener(v -> {
             Intent i = new Intent(this, ShoppingBag.class);
             i.putStringArrayListExtra("bag", (ArrayList<String>) bag);
+            i.putStringArrayListExtra("messages", (ArrayList<String>) mesInStrings);
+            i.putStringArrayListExtra("sender", (ArrayList<String>) whoSend);
             startActivity(i);
         });
 
@@ -50,6 +57,8 @@ public class RestaurantPage extends AppCompatActivity {
         buttonBack.setOnClickListener(v -> {
             Intent i = new Intent(this, MenuPage.class);
             i.putStringArrayListExtra("bagFromShopBag", (ArrayList<String>) bag);
+            i.putStringArrayListExtra("messages", (ArrayList<String>) mesInStrings);
+            i.putStringArrayListExtra("sender", (ArrayList<String>) whoSend);
             startActivity(i);
         });
 
