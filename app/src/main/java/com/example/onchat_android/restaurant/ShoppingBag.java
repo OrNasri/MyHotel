@@ -1,9 +1,8 @@
-package com.example.onchat_android;
+package com.example.onchat_android.restaurant;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,12 +13,12 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.onchat_android.MenuPage;
+import com.example.onchat_android.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ShoppingBag extends AppCompatActivity {
     ShoppingAdapter shoppingAdapter;
@@ -28,7 +27,6 @@ public class ShoppingBag extends AppCompatActivity {
     int sum = 0;
     public void deleteFromShoppingList() {
         shoppingAdapter = new ShoppingAdapter(this, bagList);
-
         ListView lvProgramShopping = findViewById(R.id.lvProgramInShopping);
         lvProgramShopping.setAdapter(shoppingAdapter);
         lvProgramShopping.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -37,22 +35,11 @@ public class ShoppingBag extends AppCompatActivity {
                 Intent i = new Intent(ShoppingBag.this, ShoppingBag.class);
                 bagList.remove(position);
                 getSum();
-                //bag.add(lst.get(position).title_price);
-//                i.putStringArrayListExtra("bag", (ArrayList<String>) bag);
-                //  Intent chat = new Intent(ContactPage.this, chatScreen.class);
-                //chat.putExtra("contactInfo", contactsIdList.get(position));
-                // chat.putExtra("userName", current);
-                // getMessages(current, contactsIdList.get(position), chat);
-               // i.putStringArrayListExtra("bag", (ArrayList<String>) bagList);
-                //startActivity(i);
                 onResume();
             }
         });
-
         lvProgramShopping.setAdapter(shoppingAdapter);
-
     }
-
 
     public int getPrice(String str){
         StringBuffer num = new StringBuffer();
@@ -83,9 +70,7 @@ public class ShoppingBag extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         bagList = getIntent().getStringArrayListExtra("bag");
-
         setContentView(R.layout.activity_shopping_bag);
-
         FloatingActionButton btnResMenu = findViewById(R.id.menu);
         btnResMenu.setOnClickListener(v -> {
             Intent i = new Intent(this, RestaurantPage.class);
@@ -138,19 +123,7 @@ public class ShoppingBag extends AppCompatActivity {
 
         shoppingAdapter = new ShoppingAdapter(this, bagList);
         ListView lvProgramShopping = findViewById(R.id.lvProgramInShopping);
-//        lvProgramShopping.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//                Intent chat = new Intent(ContactPage.this, chatScreen.class);
-//                chat.putExtra("contactInfo", contactsIdList.get(position));
-//                chat.putExtra("userName", current);
-//                getMessages(current, contactsIdList.get(position), chat);
-//
-//            }
-//        });
-
         lvProgramShopping.setAdapter(shoppingAdapter);
-
     }
 
     @Override

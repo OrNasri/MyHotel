@@ -1,19 +1,18 @@
-package com.example.onchat_android;
+package com.example.onchat_android.restaurant;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import com.example.onchat_android.R;
+
 import java.util.List;
 
 public class ShoppingAdapter extends ArrayAdapter<String> {
-
     Context context;
     List<String> NamesList;
 
@@ -25,23 +24,18 @@ public class ShoppingAdapter extends ArrayAdapter<String> {
 
     public View getView(int position, View convertView, ViewGroup parent){
         View adapter = convertView;
-        ContactPageViewHolder holder = null;
+        FacilitiesHelper holder = null;
         if(adapter == null){
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             adapter = layoutInflater.inflate(R.layout.activity_shopping_adapter,parent,false);
-            holder = new ContactPageViewHolder(adapter);
+            holder = new FacilitiesHelper(adapter);
             adapter.setTag(holder);
         }
         else {
-            holder = (ContactPageViewHolder) adapter.getTag();
+            holder = (FacilitiesHelper) adapter.getTag();
         }
 
         holder.itemName.setText(NamesList.get(position));
-
-
         return adapter;
-
     }
-
-
 }

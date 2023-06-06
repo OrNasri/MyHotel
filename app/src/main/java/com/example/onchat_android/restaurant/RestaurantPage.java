@@ -1,25 +1,22 @@
-package com.example.onchat_android;
+package com.example.onchat_android.restaurant;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.onchat_android.MenuPage;
+import com.example.onchat_android.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -71,7 +68,6 @@ public class RestaurantPage extends AppCompatActivity {
         images.add(R.drawable.l);
         images.add(0);
 
-
         fetchDataFromFirebase(new FirebaseDataCallback() {
             @Override
             public void onDataReceived(List<String> data) {
@@ -106,7 +102,6 @@ public class RestaurantPage extends AppCompatActivity {
                 }
                 adapter = new RestaurantAdapter(RestaurantPage.this, lst);
                 lvProgramRestaurant.setAdapter(adapter);
-
                 // Set up the item click listener for the ListView
                 addToShoppingList();
             }
@@ -150,6 +145,4 @@ public class RestaurantPage extends AppCompatActivity {
             }
         });
     }
-
-
 }

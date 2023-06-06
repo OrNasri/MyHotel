@@ -1,4 +1,4 @@
-package com.example.onchat_android;
+package com.example.onchat_android.chat;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.onchat_android.R;
 
 import java.util.List;
 

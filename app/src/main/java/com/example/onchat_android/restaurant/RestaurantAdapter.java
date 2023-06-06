@@ -1,15 +1,14 @@
-package com.example.onchat_android;
+package com.example.onchat_android.restaurant;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
+
+import com.example.onchat_android.R;
 
 import java.util.List;
 
@@ -27,22 +26,19 @@ public class RestaurantAdapter extends ArrayAdapter<Product> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         View adapter = convertView;
-        ContactPageViewHolder holder = null;
+        FacilitiesHelper holder = null;
         if(adapter == null){
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             adapter = layoutInflater.inflate(R.layout.activity_resturant_adapter,parent,false);
-            holder = new ContactPageViewHolder(adapter);
+            holder = new FacilitiesHelper(adapter);
             adapter.setTag(holder);
         }
         else {
-            holder = (ContactPageViewHolder) adapter.getTag();
+            holder = (FacilitiesHelper) adapter.getTag();
         }
         holder.itemImage.setImageResource(productList.get(position).getImg());
         holder.itemName.setText(productList.get(position).getTitleP());
-        holder.itemLastMessage.setText(productList.get(position).getDesc());
-
-
+        holder.itemDesc.setText(productList.get(position).getDesc());
         return adapter;
-
     }
 }

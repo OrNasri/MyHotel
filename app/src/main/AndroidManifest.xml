@@ -21,13 +21,13 @@
             android:name=".Emergency"
             android:exported="false" />
         <activity
-            android:name=".ShoppingAdapter"
+            android:name=".restaurant.ShoppingAdapter"
             android:exported="false" />
         <activity
-            android:name=".RestaurantAdapter"
+            android:name=".restaurant.RestaurantAdapter"
             android:exported="false" />
         <activity
-            android:name=".ShoppingBag"
+            android:name=".restaurant.ShoppingBag"
             android:exported="false" />
         <activity
             android:name=".LocationsPage"
@@ -51,20 +51,10 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".MapsActivity"
-            android:exported="false"
-            android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".HelpPage"
+            android:name=".chat.MyAgent"
             android:exported="false" />
         <activity
-            android:name=".MyChat"
-            android:exported="false" />
-        <activity
-            android:name=".MyAgent"
-            android:exported="false" />
-        <activity
-            android:name=".RestaurantPage"
+            android:name=".restaurant.RestaurantPage"
             android:exported="false" />
         <activity
             android:name=".HotelFacilitiesPage"
@@ -73,7 +63,7 @@
             android:name=".DiningRoomPage"
             android:exported="false" />
         <activity
-            android:name=".FacilitiesAdapter"
+            android:name=".restaurant.FacilitiesAdapter"
             android:exported="false"
             tools:ignore="Instantiatable" />
         <activity
@@ -85,31 +75,7 @@
         <activity
             android:name=".WifiPage"
             android:exported="false" />
-        <activity
-            android:name=".SettingActivity"
-            android:exported="false" />
 
-        <service
-            android:name=".MyService"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
-        <activity
-            android:name=".addContact"
-            android:exported="false" />
-        <activity
-            android:name=".chatScreen"
-            android:exported="false" />
-        <activity
-            android:name=".ContactPage"
-            android:exported="false" />
-        <activity
-            android:name=".SignUpPage"
-            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

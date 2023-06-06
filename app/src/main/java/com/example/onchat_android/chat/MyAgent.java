@@ -1,4 +1,4 @@
-package com.example.onchat_android;
+package com.example.onchat_android.chat;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.onchat_android.MenuPage;
+import com.example.onchat_android.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.api.gax.rpc.ApiException;
@@ -32,7 +34,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -161,7 +162,6 @@ public class MyAgent extends AppCompatActivity {
     }
 
     void callAPI(String question){
-//        messageList.add(new Message("Typing...", Message.SENT_BY_BOT));
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("model", "text-davinci-003");
@@ -318,7 +318,6 @@ public class MyAgent extends AppCompatActivity {
         } else {
             return "None";
         }
-
     }
 }
 

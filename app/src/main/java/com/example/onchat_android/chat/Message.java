@@ -1,4 +1,4 @@
-package com.example.onchat_android;
+package com.example.onchat_android.chat;
 
 public class Message {
     public static String SENT_BY_ME = "me";

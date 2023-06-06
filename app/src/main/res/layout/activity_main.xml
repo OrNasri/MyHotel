@@ -12,13 +12,13 @@
         android:id="@+id/imageView10"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:background="@drawable/main"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28"
-        android:background="@drawable/main" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -36,9 +36,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView10"
-        app:layout_constraintVertical_bias="0.449" />
+        app:layout_constraintVertical_bias="0.439" />
 
     <EditText
         android:id="@+id/editTextTextPassword2"
@@ -82,6 +83,8 @@
         app:rippleColor="#000000"
         app:strokeColor="#000000"
         tools:text="@string/login" />
+
+
 
 
     <!--    <ListView-->

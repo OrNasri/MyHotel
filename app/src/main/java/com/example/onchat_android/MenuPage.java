@@ -8,7 +8,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.onchat_android.chat.MyAgent;
+import com.example.onchat_android.restaurant.RestaurantPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,14 +28,6 @@ public class MenuPage extends AppCompatActivity {
             bag = new ArrayList<>();
         }
 
-//        FloatingActionButton btnAddContact = findViewById(R.id.btnChat);
-//        btnAddContact.setOnClickListener(v -> {
-//            Intent i = new Intent(this, MyChat.class);
-//            startActivity(i);
-////שיניתי לצאט שלי
-////            Intent i = new Intent(this, HelpPage.class);
-////            startActivity(i);
-//        });
 
         Button buttonFacilities = findViewById(R.id.button5);
         buttonFacilities.setOnClickListener(v -> {

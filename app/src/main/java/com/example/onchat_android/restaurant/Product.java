@@ -1,4 +1,4 @@
-package com.example.onchat_android;
+package com.example.onchat_android.restaurant;
 
 public class Product {
     public String title;
