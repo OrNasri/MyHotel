@@ -39,51 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editTextTextPassword2;
     private FirebaseAuth auth;
 
-    private AppDB dbInLogin;
-    private ContactDao contactDao;
-    private List<Contact> contacts;
-    private ArrayAdapter<User> adapter;
-    private  PostAPI postAPI;
 
-    int flag = 0;
-
-    public void getContactList(Intent j, String userId){
-        WebServiceAPI webServiceAPI = postAPI.getService();
-        Call<List<Contact>> call = webServiceAPI.getUserContacts(userId);
-        call.enqueue(new Callback<List<Contact>>() {
-            @Override
-            public void onResponse(@NonNull Call<List<Contact>> call, @NonNull Response<List<Contact>> response) {
-                contacts = response.body();
-                int size =contactDao.index().size();
-                for(int j = 0; j < size; j ++) {
-                    contactDao.delete(contactDao.index().get(0));
-                }
-                for(int i=0; i< contacts.size(); i++){
-                    contactDao.insert(contacts.get(i));
-
-                }
-                startActivity(j);
-            }
-            @Override
-            public void onFailure(@NonNull Call<List<Contact>> call, Throwable t) {
-            }
-        });
-    }
-
-    public void setToken (String token) {
-        WebServiceAPI webServiceAPI = postAPI.getService();
-        Call<Void> call = webServiceAPI.addToken(editTextTextPersonName.getText().toString(),token);
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-
-            }
-            @Override
-            public void onFailure(@NonNull Call<Void> call, Throwable t) {
-            }
-        });
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
