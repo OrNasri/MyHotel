@@ -21,6 +21,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -55,9 +57,6 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-auth:21.2.0'
     implementation 'com.google.firebase:firebase-database:20.0.4'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     annotationProcessor 'androidx.room:room-compiler:2.5.1'
 
     // chatgpt
@@ -82,5 +81,15 @@ dependencies {
     implementation 'com.google.firebase:firebase-database'
 
 //    tests
+    // Add multidex library dependency
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test:rules:1.5.0'
+
+
 
 }

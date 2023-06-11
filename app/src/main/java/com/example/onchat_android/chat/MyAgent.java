@@ -68,6 +68,7 @@ public class MyAgent extends AppCompatActivity {
 
 
     public void InitCred() throws IOException {
+        // create credentials to get data from google dialog flow
         if (sessionsClient == null) {
             GoogleCredentials credentials = GoogleCredentials.fromStream(this.getResources().openRawResource(R.raw.service_account));
             SessionsSettings.Builder settingsBuilder = SessionsSettings.newBuilder();
@@ -76,6 +77,8 @@ public class MyAgent extends AppCompatActivity {
             sessionsClient = SessionsClient.create(sessionsSettings);
         }
     }
+
+    // initializes requests from google
     public class DownloadFilesTask extends AsyncTask {
         private String answer = null;
         private SessionsClient sessionsClient = null;
@@ -131,7 +134,7 @@ public class MyAgent extends AppCompatActivity {
                         String[] temp2 = temp1[1].split("\"");
                         setAnswer(null);
                         if(Objects.equals(temp2[1], "None")){
-//                            call to chatGPT
+                            // call to chatGPT
                             gpt = true;
                         }
                         else {

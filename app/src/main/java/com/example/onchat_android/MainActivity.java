@@ -19,8 +19,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText editTextTextPassword2;
     private FirebaseAuth auth;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

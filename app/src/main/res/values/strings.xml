@@ -9,7 +9,6 @@
     <string name="signupPage">SignUp</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="back_to_login">back to Login</string>
-    <string name="BaseUrl">http://10.0.2.2:7242/api/</string>
     <string name="enter_message">Enter Message</string>
     <string name="todo1">TODO</string>
     <string name="textview">TextView</string>
@@ -41,6 +40,7 @@
     <string name="backToMenuDining">backToMenuDining</string>
     <string name="backToMenuContact">backToMenuContact</string>
     <string name="backToMenuEmergency">backToMenuEmergency</string>
+    <string name="welcome">WELCOME</string>
 
 
 </resources>
