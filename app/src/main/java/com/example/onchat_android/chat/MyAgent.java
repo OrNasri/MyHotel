@@ -64,6 +64,7 @@ public class MyAgent extends AppCompatActivity {
     private SessionsClient sessionsClient = null;
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
+//    way to make HTTP requests
     OkHttpClient client = new OkHttpClient();
 
 
@@ -78,11 +79,11 @@ public class MyAgent extends AppCompatActivity {
         }
     }
 
-    // initializes requests from google
-    public class DownloadFilesTask extends AsyncTask {
+    // initializes requests from google- perform asynchronous operations for fetching responses from Google Dialogflow.
+    public class AsyncDialogflowRequest extends AsyncTask {
         private String answer = null;
         private SessionsClient sessionsClient = null;
-        public DownloadFilesTask(SessionsClient sessionsClient) {
+        public AsyncDialogflowRequest(SessionsClient sessionsClient) {
             this.sessionsClient = sessionsClient;
         }
         public void setAnswer(String answer){
@@ -99,24 +100,17 @@ public class MyAgent extends AppCompatActivity {
                 temp.add(texts.get(texts.size() -1));
                 // Set the session name using the sessionId (UUID) and projectID (my-project-id)
                 SessionName session = SessionName.of(projectId, sessionId);
-                System.out.println("Session Path: " + session.toString());
-
                 // Detect intents for each text input
                 for (String t : temp) {
                     // Set the text (hello) and language code (en-US) for the query
                     TextInput.Builder textInput =
                             TextInput.newBuilder().setText(t).setLanguageCode(languageCode);
-
                     // Build the query with the TextInput
                     QueryInput queryInput = QueryInput.newBuilder().setText(textInput).build();
-
                     // Performs the detect intent request
                     DetectIntentResponse response = sessionsClient.detectIntent(session, queryInput);
-
                     // Display the query result
                     QueryResult queryResult = response.getQueryResult();
-
-                    System.out.println("====================");
                     System.out.format("Query Text: '%s'\n", queryResult.getQueryText());
                     System.out.format(
                             "Detected Intent: %s (confidence: %f)\n",
@@ -165,6 +159,7 @@ public class MyAgent extends AppCompatActivity {
         }
     }
 
+//    make an HTTP POST request to the OpenAI API (GPT-3) for generating responses when Dialogflow doesn't provide a fulfillment message.
     void callAPI(String question){
         JSONObject jsonBody = new JSONObject();
         try {
@@ -186,7 +181,6 @@ public class MyAgent extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 addResponse("Failed to load response due to "+e.getMessage());
-                System.out.println("Failed to load response due to "+e.getMessage());
             }
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
@@ -210,7 +204,6 @@ public class MyAgent extends AppCompatActivity {
                         }
                     } else {
                         addResponse("Failed to load response due to " + responseBodyString);
-                        System.out.println("Failed to load response due to " + responseBodyString);
                     }
                 }
             }
@@ -297,6 +290,8 @@ public class MyAgent extends AppCompatActivity {
         });
     }
 
+//    adding a new message to the chat interface. updates the message list,
+//    notifies the adapter, and scrolls the RecyclerView to the latest message.
     void addToChat(String message, String sentBy){
         runOnUiThread(new Runnable() {
             @Override
@@ -309,15 +304,16 @@ public class MyAgent extends AppCompatActivity {
         });
     }
 
+//    add the response received from the Dialogflow or GPT to the chat interface.
     void addResponse(String response){
         messageList.remove(messageList.size()-1);
         addToChat(response, Message.SENT_BY_BOT);
 
     }
 
+//    returns the response received from the dialogflow.
     String callAgent(String question) throws InterruptedException, ExecutionException {
         messageList.add(new Message("Typing...", Message.SENT_BY_BOT));
-  //      keepMessages.add(new Message("Typing...", Message.SENT_BY_BOT));
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("model", "text-davinci-003");
@@ -335,7 +331,7 @@ public class MyAgent extends AppCompatActivity {
         {
             throw new RuntimeException(e);
         }
-        DownloadFilesTask dft = new DownloadFilesTask(sessionsClient);
+        AsyncDialogflowRequest dft = new AsyncDialogflowRequest(sessionsClient);
 
         // Call to doInBackground
         // Waiting for the thread finished his job.

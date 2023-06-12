@@ -34,14 +34,13 @@
         app:backgroundTint="#5B6265" />
 
     <TextView
+        android:id="@+id/welcome_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/welcome_text"
         android:layout_centerInParent="true"
-        android:text="My Agent"
         android:gravity="center"
-        android:textSize="28dp"
-        />
+        android:text="My Agent"
+        android:textSize="28dp" />
 
 
     <RelativeLayout

@@ -83,5 +83,19 @@
         app:layout_constraintTop_toBottomOf="@+id/textView27"
         app:layout_constraintVertical_bias="0.995" />
 
+    <TextView
+        android:id="@+id/loadingTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="Loading..."
+        android:textSize="28dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView35"
+        app:layout_constraintTop_toTopOf="@+id/imageView7"
+        app:layout_constraintVertical_bias="0.498"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

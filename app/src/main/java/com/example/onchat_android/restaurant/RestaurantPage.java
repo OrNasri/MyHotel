@@ -2,6 +2,7 @@ package com.example.onchat_android.restaurant;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.onchat_android.MenuPage;
 import com.example.onchat_android.R;
@@ -26,10 +28,11 @@ public class RestaurantPage extends AppCompatActivity {
     private List<String> bag;
     private RestaurantAdapter adapter;
     private List<Product> lst;
-
+    TextView loading_text;
     List<String> whoSend;
     List<String> mesInStrings;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +46,7 @@ public class RestaurantPage extends AppCompatActivity {
         }
         mesInStrings = getIntent().getStringArrayListExtra("messages");
         whoSend = getIntent().getStringArrayListExtra("sender");
-
+        loading_text = findViewById(R.id.loadingTextView);
         FloatingActionButton Card = findViewById(R.id.bagShop);
         Card.setOnClickListener(v -> {
             Intent i = new Intent(this, ShoppingBag.class);
@@ -113,11 +116,13 @@ public class RestaurantPage extends AppCompatActivity {
                 lvProgramRestaurant.setAdapter(adapter);
                 // Set up the item click listener for the ListView
                 addToShoppingList();
+                loading_text.setVisibility(View.GONE);
             }
         });
     }
 
     public void addToShoppingList() {
+//        make each product as button
         ListView lvProgramRestaurant = findViewById(R.id.lvProgramRestaurant);
         lvProgramRestaurant.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -115,7 +115,7 @@ public class ShoppingBag extends AppCompatActivity {
                 Intent i = new Intent(this, RestaurantPage.class);
                 AlertDialog alertDialogError = new AlertDialog.Builder(ShoppingBag.this).create();
                 alertDialogError.setTitle("Your bag is empty");
-                alertDialogError.setMessage("Add at last one product.");
+                alertDialogError.setMessage("Add at least one product.");
                 alertDialogError.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
