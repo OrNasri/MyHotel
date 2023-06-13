@@ -26,45 +26,37 @@ public class MenuPageTest {
 
     @Test
     public void testButtonFacilitiesClick() {
-        // Perform a click on the buttonFacilities button
         Espresso.onView(ViewMatchers.withId(R.id.button5)).perform(ViewActions.click());
     }
 
     @Test
     public void testButtonContactInfoClick() {
-        // Perform a click on the buttonContactInfo button
         Espresso.onView(ViewMatchers.withId(R.id.button4)).perform(ViewActions.click());
     }
 
     @Test
     public void testButtonDiningRoomClick() {
-        // Perform a click on the buttonWifi button
         Espresso.onView(ViewMatchers.withId(R.id.button6)).perform(ViewActions.click());
     }
     @Test
     public void testButtonRestaurantClick() {
-        // Perform a click on the buttonWifi button
         Espresso.onView(ViewMatchers.withId(R.id.button7)).perform(ViewActions.click());
     }
     @Test
     public void testButtonLocationsClick() {
-        // Perform a click on the buttonWifi button
         Espresso.onView(ViewMatchers.withId(R.id.button8)).perform(ViewActions.click());
     }
     @Test
     public void testButtonAgentClick() {
-        // Perform a click on the buttonWifi button
         Espresso.onView(ViewMatchers.withId(R.id.button9)).perform(ViewActions.click());
     }
     @Test
     public void testButtonEmergencyClick() {
-        // Perform a click on the buttonWifi button
         Espresso.onView(ViewMatchers.withId(R.id.button10)).perform(ViewActions.click());
 
     }
     @Test
     public void testButtonWifiClick() {
-        // Perform a click on the buttonWifi button
         Espresso.onView(ViewMatchers.withId(R.id.button3)).perform(ViewActions.click());
 
     }

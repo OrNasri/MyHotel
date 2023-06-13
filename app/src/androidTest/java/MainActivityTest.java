@@ -18,30 +18,27 @@ public class MainActivityTest {
 
     @Test
     public void testSuccessfulLogin() {
-        // Enter the email and password
+        // enter the email and password
         Espresso.onView(ViewMatchers.withId(R.id.editTextTextPersonName))
                 .perform(ViewActions.typeText("ornasri5@gmail.com"), ViewActions.closeSoftKeyboard());
         Espresso.onView(ViewMatchers.withId(R.id.editTextTextPassword2))
                 .perform(ViewActions.typeText("12345678+100"), ViewActions.closeSoftKeyboard());
 
-        // Click on the login button
+        // click on the login button
         Espresso.onView(ViewMatchers.withId(R.id.buttonLogin)).perform(ViewActions.click());
-
-        // Verify if the login is successful by checking if the MenuPage activity is launched
 
     }
 
     @Test
     public void testFailedLogin() {
-        // Enter incorrect email and password
+        // enter incorrect email and password
         Espresso.onView(ViewMatchers.withId(R.id.editTextTextPersonName))
                 .perform(ViewActions.typeText("invalid@gmail.com"), ViewActions.closeSoftKeyboard());
         Espresso.onView(ViewMatchers.withId(R.id.editTextTextPassword2))
                 .perform(ViewActions.typeText("invalidpassword"), ViewActions.closeSoftKeyboard());
 
-        // Click on the login button
+        // click on the login button
         Espresso.onView(ViewMatchers.withId(R.id.buttonLogin)).perform(ViewActions.click());
 
-        // Verify if an error toast message is displayed
     }
 }
